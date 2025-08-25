@@ -27,3 +27,7 @@ jobs:
         ResourceGroupName: 'MTWS_Synapse'
         DeleteArtifactsNotInTemplate: false
         environment: 'Azure Public'
+        clientId: ${{ secrets.CLIENT_ID }}
+        clientSecret: ${{ secrets.CLIENT_SECRET }}
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+        tenantId: ${{ secrets.TENANT_ID }}
