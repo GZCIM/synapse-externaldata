@@ -19,7 +19,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
     - name: Deploy Synapse Artifacts with Validate and Deploy
-      uses: azure/synapse-workspace-deployment@v1.0.0
+      uses: azure/synapse-workspace-deployment@v1.9.1
       with:
         operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
