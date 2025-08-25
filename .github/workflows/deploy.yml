@@ -24,11 +24,6 @@ jobs:
         operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
         ArtifactsFolder: './'
-        azureSubscription: 'synapse-github-actions'
         ResourceGroupName: 'MTWS_Synapse'
         DeleteArtifactsNotInTemplate: false
         environment: 'Azure Public'
-        clientId: '482d2ddc-2b22-4edd-8f40-b22ede501314'
-        clientSecret: ${{ secrets.CLIENT_SECRET }}
-        subscriptionId: '6f928fec-8d15-47d7-b27b-be8b568e9789'
-        tenantId: '8274c97d-de9d-4328-98cf-2d4ee94bf104'
