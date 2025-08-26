@@ -1,0 +1,18 @@
+{
+  "name": "ADXLinkedService",
+  "properties": {
+    "type": "AzureDataExplorer",
+    "typeProperties": {
+      "endpoint": "https://dataexploreradx.eastus.kusto.windows.net",
+      "database": "macro-data",
+      "servicePrincipalId": "",
+      "servicePrincipalKey": {
+        "type": "SecureString",
+        "value": ""
+      },
+      "tenant": "8274c97d-de9d-4328-98cf-2d4ee94bf104"
+    },
+    "annotations": [],
+    "description": "Azure Data Explorer connection for FRED data ingestion"
+  }
+}
