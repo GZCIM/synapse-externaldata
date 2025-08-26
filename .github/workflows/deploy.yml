@@ -24,9 +24,9 @@ jobs:
         operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
         ArtifactsFolder: './'
-        ResourceGroupName: 'MTWS_Synapse'
+        resourceGroup: 'MTWS_Synapse'
         DeleteArtifactsNotInTemplate: false
-        environment: 'Azure Public'
+        Environment: 'Azure Public'
         clientId: ${{ secrets.CLIENT_ID }}
         clientSecret: ${{ secrets.CLIENT_SECRET }}
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
