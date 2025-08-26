@@ -3,54 +3,39 @@
   "properties": {
     "activities": [
       {
-        "additionalProperties": null,
-        "authentication": null,
-        "conf": null,
-        "configurationType": null,
-        "dependsOn": [],
-        "description": null,
-        "driverSize": "Medium",
-        "executorSize": "Medium",
-        "linkedServiceName": null,
         "name": "Execute_CPI_Notebook",
-        "notebook": {
-          "referenceName": "FRED_Universal_to_ADX",
-          "type": "NotebookReference"
-        },
-        "numExecutors": null,
-        "onInactiveMarkAs": null,
-        "parameters": {
-          "release_id": {
-            "type": "Int",
-            "value": {
-              "type": "Expression",
-              "value": "@pipeline().parameters.release_id"
-            }
-          }
-        },
+        "type": "SynapseNotebook",
+        "dependsOn": [],
         "policy": {
-          "additionalProperties": null,
+          "timeout": "1.00:00:00",
           "retry": 0,
           "retryIntervalInSeconds": 30,
-          "secureInput": false,
           "secureOutput": false,
-          "timeout": "1.00:00:00"
+          "secureInput": false
         },
-        "sparkConfig": null,
-        "sparkPool": {
-          "referenceName": "spack2",
-          "type": "BigDataPoolReference"
-        },
-        "state": null,
-        "targetSparkConfiguration": null,
-        "type": "SynapseNotebook",
-        "userProperties": []
+        "userProperties": [],
+        "typeProperties": {
+          "notebook": {
+            "referenceName": "FRED_Universal_to_ADX",
+            "type": "NotebookReference"
+          },
+          "parameters": {
+            "release_id": {
+              "value": "@pipeline().parameters.release_id",
+              "type": "Int"
+            }
+          },
+          "sparkPool": {
+            "referenceName": "spack2",
+            "type": "BigDataPoolReference"
+          }
+        }
       }
     ],
     "parameters": {
       "release_id": {
-        "defaultValue": 10,
-        "type": "Int"
+        "type": "Int",
+        "defaultValue": 10
       }
     },
     "annotations": [
@@ -58,7 +43,6 @@
       "CPI",
       "Universal"
     ],
-    "description": "Universal CPI ingestion with release_id parameter",
     "folder": {
       "name": "FRED_Pipelines"
     }
