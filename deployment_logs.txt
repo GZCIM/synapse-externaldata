@@ -1,0 +1,226 @@
+deploy	Set up job	﻿2025-08-26T17:23:51.3648825Z Current runner version: '2.328.0'
+deploy	Set up job	2025-08-26T17:23:51.3675434Z ##[group]Runner Image Provisioner
+deploy	Set up job	2025-08-26T17:23:51.3676505Z Hosted Compute Agent
+deploy	Set up job	2025-08-26T17:23:51.3677355Z Version: 20250825.382
+deploy	Set up job	2025-08-26T17:23:51.3678244Z Commit: 7109f2abf901479dac39397456e363ac0cca0730
+deploy	Set up job	2025-08-26T17:23:51.3679752Z Build Date: 2025-08-25T22:55:50Z
+deploy	Set up job	2025-08-26T17:23:51.3680599Z ##[endgroup]
+deploy	Set up job	2025-08-26T17:23:51.3681308Z ##[group]Operating System
+deploy	Set up job	2025-08-26T17:23:51.3682084Z Ubuntu
+deploy	Set up job	2025-08-26T17:23:51.3682784Z 24.04.2
+deploy	Set up job	2025-08-26T17:23:51.3683459Z LTS
+deploy	Set up job	2025-08-26T17:23:51.3684155Z ##[endgroup]
+deploy	Set up job	2025-08-26T17:23:51.3684902Z ##[group]Runner Image
+deploy	Set up job	2025-08-26T17:23:51.3685641Z Image: ubuntu-24.04
+deploy	Set up job	2025-08-26T17:23:51.3686377Z Version: 20250818.1.0
+deploy	Set up job	2025-08-26T17:23:51.3687625Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250818.1/images/ubuntu/Ubuntu2404-Readme.md
+deploy	Set up job	2025-08-26T17:23:51.3689671Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250818.1
+deploy	Set up job	2025-08-26T17:23:51.3691117Z ##[endgroup]
+deploy	Set up job	2025-08-26T17:23:51.3692604Z ##[group]GITHUB_TOKEN Permissions
+deploy	Set up job	2025-08-26T17:23:51.3694701Z Contents: read
+deploy	Set up job	2025-08-26T17:23:51.3695497Z Metadata: read
+deploy	Set up job	2025-08-26T17:23:51.3696173Z Packages: read
+deploy	Set up job	2025-08-26T17:23:51.3696900Z ##[endgroup]
+deploy	Set up job	2025-08-26T17:23:51.3699359Z Secret source: Actions
+deploy	Set up job	2025-08-26T17:23:51.3700407Z Prepare workflow directory
+deploy	Set up job	2025-08-26T17:23:51.4020457Z Prepare all required actions
+deploy	Set up job	2025-08-26T17:23:51.4057619Z Getting action download info
+deploy	Set up job	2025-08-26T17:23:51.8791828Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+deploy	Set up job	2025-08-26T17:23:51.9839826Z Download action repository 'azure/login@v1' (SHA:cb79c773a3cfa27f31f25eb3f677781210c9ce3d)
+deploy	Set up job	2025-08-26T17:23:54.0221981Z Download action repository 'azure/synapse-workspace-deployment@V1.9.1' (SHA:b76db0833134872a789bea41667b47a7cf0494b7)
+deploy	Set up job	2025-08-26T17:23:54.6499105Z Complete job name: deploy
+deploy	Pre Login to Azure	﻿2025-08-26T17:23:54.7130720Z ##[group]Run azure/login@v1
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7131444Z with:
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7133897Z   creds: ***
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7134233Z   enable-AzPSSession: false
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7134591Z   environment: azurecloud
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7134942Z   allow-no-subscriptions: false
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7135328Z   audience: api://AzureADTokenExchange
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7135734Z   auth-type: SERVICE_PRINCIPAL
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7136290Z ##[endgroup]
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7950632Z Clearing azure cli accounts from the local cache.
+deploy	Pre Login to Azure	2025-08-26T17:23:54.7951241Z [command]/usr/bin/az account clear
+deploy	Checkout code	﻿2025-08-26T17:24:06.6874217Z ##[group]Run actions/checkout@v3
+deploy	Checkout code	2025-08-26T17:24:06.6874604Z with:
+deploy	Checkout code	2025-08-26T17:24:06.6874878Z   repository: GZCIM/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:06.6875319Z   token: ***
+deploy	Checkout code	2025-08-26T17:24:06.6875565Z   ssh-strict: true
+deploy	Checkout code	2025-08-26T17:24:06.6875822Z   persist-credentials: true
+deploy	Checkout code	2025-08-26T17:24:06.6876094Z   clean: true
+deploy	Checkout code	2025-08-26T17:24:06.6876337Z   sparse-checkout-cone-mode: true
+deploy	Checkout code	2025-08-26T17:24:06.6876630Z   fetch-depth: 1
+deploy	Checkout code	2025-08-26T17:24:06.6876867Z   fetch-tags: false
+deploy	Checkout code	2025-08-26T17:24:06.6877117Z   lfs: false
+deploy	Checkout code	2025-08-26T17:24:06.6877345Z   submodules: false
+deploy	Checkout code	2025-08-26T17:24:06.6877593Z   set-safe-directory: true
+deploy	Checkout code	2025-08-26T17:24:06.6877871Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:06.7661607Z Syncing repository: GZCIM/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:06.7663230Z ##[group]Getting Git version info
+deploy	Checkout code	2025-08-26T17:24:06.7663829Z Working directory is '/home/runner/work/synapse-externaldata/synapse-externaldata'
+deploy	Checkout code	2025-08-26T17:24:06.7664665Z [command]/usr/bin/git version
+deploy	Checkout code	2025-08-26T17:24:06.7715692Z git version 2.51.0
+deploy	Checkout code	2025-08-26T17:24:06.7743067Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:06.7757418Z Temporarily overriding HOME='/home/runner/work/_temp/1cbf902d-c45c-4e50-9055-4ce4b98f3a70' before making global git config changes
+deploy	Checkout code	2025-08-26T17:24:06.7759002Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Checkout code	2025-08-26T17:24:06.7761602Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/synapse-externaldata/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:06.7795422Z Deleting the contents of '/home/runner/work/synapse-externaldata/synapse-externaldata'
+deploy	Checkout code	2025-08-26T17:24:06.7799208Z ##[group]Initializing the repository
+deploy	Checkout code	2025-08-26T17:24:06.7802226Z [command]/usr/bin/git init /home/runner/work/synapse-externaldata/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:06.7862899Z hint: Using 'master' as the name for the initial branch. This default branch name
+deploy	Checkout code	2025-08-26T17:24:06.7864021Z hint: is subject to change. To configure the initial branch name to use in all
+deploy	Checkout code	2025-08-26T17:24:06.7864916Z hint: of your new repositories, which will suppress this warning, call:
+deploy	Checkout code	2025-08-26T17:24:06.7865696Z hint:
+deploy	Checkout code	2025-08-26T17:24:06.7866252Z hint: 	git config --global init.defaultBranch <name>
+deploy	Checkout code	2025-08-26T17:24:06.7866891Z hint:
+deploy	Checkout code	2025-08-26T17:24:06.7867523Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+deploy	Checkout code	2025-08-26T17:24:06.7868659Z hint: 'development'. The just-created branch can be renamed via this command:
+deploy	Checkout code	2025-08-26T17:24:06.7869447Z hint:
+deploy	Checkout code	2025-08-26T17:24:06.7869880Z hint: 	git branch -m <name>
+deploy	Checkout code	2025-08-26T17:24:06.7870346Z hint:
+deploy	Checkout code	2025-08-26T17:24:06.7870976Z hint: Disable this message with "git config set advice.defaultBranchName false"
+deploy	Checkout code	2025-08-26T17:24:06.7871822Z Initialized empty Git repository in /home/runner/work/synapse-externaldata/synapse-externaldata/.git/
+deploy	Checkout code	2025-08-26T17:24:06.7878793Z [command]/usr/bin/git remote add origin https://github.com/GZCIM/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:06.7912458Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:06.7913014Z ##[group]Disabling automatic garbage collection
+deploy	Checkout code	2025-08-26T17:24:06.7915038Z [command]/usr/bin/git config --local gc.auto 0
+deploy	Checkout code	2025-08-26T17:24:06.7941912Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:06.7942377Z ##[group]Setting up auth
+deploy	Checkout code	2025-08-26T17:24:06.7946876Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Checkout code	2025-08-26T17:24:06.7973167Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Checkout code	2025-08-26T17:24:06.8296157Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Checkout code	2025-08-26T17:24:06.8323029Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Checkout code	2025-08-26T17:24:06.8539685Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+deploy	Checkout code	2025-08-26T17:24:06.8572756Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:06.8573617Z ##[group]Fetching the repository
+deploy	Checkout code	2025-08-26T17:24:06.8581538Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +1daca2142ef2ab438edb14d335732a1be8335d50:refs/remotes/origin/main
+deploy	Checkout code	2025-08-26T17:24:07.2267546Z remote: Enumerating objects: 10, done.        
+deploy	Checkout code	2025-08-26T17:24:07.2268294Z remote: Counting objects:  10% (1/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2269149Z remote: Counting objects:  20% (2/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2269722Z remote: Counting objects:  30% (3/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2270282Z remote: Counting objects:  40% (4/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2270701Z remote: Counting objects:  50% (5/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2271087Z remote: Counting objects:  60% (6/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2271462Z remote: Counting objects:  70% (7/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2271832Z remote: Counting objects:  80% (8/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2272210Z remote: Counting objects:  90% (9/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2272602Z remote: Counting objects: 100% (10/10)        
+deploy	Checkout code	2025-08-26T17:24:07.2273035Z remote: Counting objects: 100% (10/10), done.        
+deploy	Checkout code	2025-08-26T17:24:07.2273478Z remote: Compressing objects:  16% (1/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2273866Z remote: Compressing objects:  33% (2/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2274248Z remote: Compressing objects:  50% (3/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2274634Z remote: Compressing objects:  66% (4/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2275294Z remote: Compressing objects:  83% (5/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2275679Z remote: Compressing objects: 100% (6/6)        
+deploy	Checkout code	2025-08-26T17:24:07.2276085Z remote: Compressing objects: 100% (6/6), done.        
+deploy	Checkout code	2025-08-26T17:24:07.2287510Z remote: Total 10 (delta 0), reused 7 (delta 0), pack-reused 0 (from 0)        
+deploy	Checkout code	2025-08-26T17:24:07.2380994Z From https://github.com/GZCIM/synapse-externaldata
+deploy	Checkout code	2025-08-26T17:24:07.2381997Z  * [new ref]         1daca2142ef2ab438edb14d335732a1be8335d50 -> origin/main
+deploy	Checkout code	2025-08-26T17:24:07.2415422Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:07.2416232Z ##[group]Determining the checkout info
+deploy	Checkout code	2025-08-26T17:24:07.2418787Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:07.2419542Z ##[group]Checking out the ref
+deploy	Checkout code	2025-08-26T17:24:07.2424615Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+deploy	Checkout code	2025-08-26T17:24:07.2472039Z Switched to a new branch 'main'
+deploy	Checkout code	2025-08-26T17:24:07.2474304Z branch 'main' set up to track 'origin/main'.
+deploy	Checkout code	2025-08-26T17:24:07.2482919Z ##[endgroup]
+deploy	Checkout code	2025-08-26T17:24:07.2517324Z [command]/usr/bin/git log -1 --format='%H'
+deploy	Checkout code	2025-08-26T17:24:07.2541477Z '1daca2142ef2ab438edb14d335732a1be8335d50'
+deploy	Login to Azure	﻿2025-08-26T17:24:07.2706268Z ##[group]Run azure/login@v1
+deploy	Login to Azure	2025-08-26T17:24:07.2706587Z with:
+deploy	Login to Azure	2025-08-26T17:24:07.2709073Z   creds: ***
+deploy	Login to Azure	2025-08-26T17:24:07.2709340Z   enable-AzPSSession: false
+deploy	Login to Azure	2025-08-26T17:24:07.2709628Z   environment: azurecloud
+deploy	Login to Azure	2025-08-26T17:24:07.2709913Z   allow-no-subscriptions: false
+deploy	Login to Azure	2025-08-26T17:24:07.2710230Z   audience: api://AzureADTokenExchange
+deploy	Login to Azure	2025-08-26T17:24:07.2710558Z   auth-type: SERVICE_PRINCIPAL
+deploy	Login to Azure	2025-08-26T17:24:07.2710835Z ##[endgroup]
+deploy	Login to Azure	2025-08-26T17:24:07.3451291Z Running Azure CLI Login.
+deploy	Login to Azure	2025-08-26T17:24:07.7747919Z [command]/usr/bin/az cloud set -n azurecloud
+deploy	Login to Azure	2025-08-26T17:24:08.0033759Z Done setting cloud: "azurecloud"
+deploy	Login to Azure	2025-08-26T17:24:08.0036121Z Note: Azure/login action also supports OIDC login mechanism. Refer https://github.com/azure/login#configure-a-service-principal-with-a-federated-credential-to-use-oidc-based-authentication for more details.
+deploy	Login to Azure	2025-08-26T17:24:08.0038601Z Attempting Azure CLI login by using service principal with secret...
+deploy	Login to Azure	2025-08-26T17:24:09.5037580Z Subscription is set successfully.
+deploy	Login to Azure	2025-08-26T17:24:09.5038954Z Azure CLI login succeeds by using service principal with secret.
+deploy	Deploy Synapse Artifacts with Validate and Deploy	﻿2025-08-26T17:24:09.5154849Z ##[group]Run azure/synapse-workspace-deployment@V1.9.1
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5155541Z with:
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5155946Z   operation: validateDeploy
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5156460Z   TargetWorkspaceName: externaldata
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5156995Z   ArtifactsFolder: ./
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5157476Z   resourceGroup: MTWS_Synapse
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5158037Z   DeleteArtifactsNotInTemplate: false
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5159064Z   Environment: Azure Public
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5159660Z   clientId: ***
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5160309Z   clientSecret: ***
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5160890Z   subscriptionId: ***
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5161453Z   tenantId: ***
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5161885Z ##[endgroup]
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5670544Z Bundle source : https://web.azuresynapse.net/assets/cmd-api/main.js
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:09.5681114Z Downloading asset file
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:10.3641793Z Asset file downloaded at : /home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:10.3650324Z Starting export operation
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:10.3651311Z Executing shell command
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:10.3652482Z Command : node /home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js export "./" externaldata ExportedArtifacts
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2107793Z Stdout: [0m CmdApiApp: Initializing application.
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2108967Z Resource: externaldata
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2109348Z RootFolder: ./
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2109513Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2164096Z Stdout: [0m ModelService: synchronize - start
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2164632Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2166947Z Stdout: [0m ModelService: Dynamic connector - Start registering dynamic connectors
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2168900Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2186077Z Stdout: [0m DynamicConnectorService: Dynamic connector - Start registering connector: Dataworld
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2186873Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2202385Z Stdout: [0m DynamicConnectorService: Dynamic connector - Finished registering connector: Dataworld
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2203575Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2204584Z Stdout: [0m DynamicConnectorService: Dynamic connector - Start registering connector: Asana
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2206683Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2207777Z Stdout: [0m DynamicConnectorService: Dynamic connector - Finished registering connector: Asana
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2208738Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2209487Z Stdout: [0m DynamicConnectorService: Dynamic connector - Start registering connector: Twilio
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2210225Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2212072Z Stdout: [0m DynamicConnectorService: Dynamic connector - Finished registering connector: Twilio
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2214164Z [0m DynamicConnectorService: Dynamic connector - Start registering connector: AppFigures
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2215471Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2216531Z Stdout: [0m DynamicConnectorService: Dynamic connector - Finished registering connector: AppFigures
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2217279Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2217987Z Stdout: [0m DynamicConnectorService: Dynamic connector - Start registering connector: GoogleSheets
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2218932Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2219896Z Stdout: [0m DynamicConnectorService: Dynamic connector - Finished registering connector: GoogleSheets
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2220782Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2255472Z Stdout: [0m LocalFileUtils: Reading pipeline files at : pipeline
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.2256047Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3140905Z Stdout: Unexpected error during export template command: ***"stack":"TypeError: Cannot read properties of undefined (reading 'activities')\n    at getPipelineActivitiesByType (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:303099:31)\n    at /home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:270389:124\n    at Array.forEach (<anonymous>)\n    at LocalFileUtils.<anonymous> (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:270385:27)\n    at Generator.next (<anonymous>)\n    at fulfilled (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:688962:24)","message":"Cannot read properties of undefined (reading 'activities')"***
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3144284Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3186754Z Stderr: /home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:376292
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3187625Z           throw ex;
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3187984Z           ^
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3188175Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3188703Z TypeError: Cannot read properties of undefined (reading 'activities')
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3189873Z     at getPipelineActivitiesByType (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:303099:31)
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3191132Z     at /home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:270389:124
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3191694Z     at Array.forEach (<anonymous>)
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3192341Z     at LocalFileUtils.<anonymous> (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:270385:27)
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3192960Z     at Generator.next (<anonymous>)
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3193507Z     at fulfilled (/home/runner/work/synapse-externaldata/synapse-externaldata/downloads/main.js:688962:24)
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3193956Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3194058Z Node.js v20.19.4
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3194200Z 
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3436372Z Shell execution failed.
+deploy	Deploy Synapse Artifacts with Validate and Deploy	2025-08-26T17:24:13.3438145Z Action failed -> Error
+deploy	Post Checkout code	﻿2025-08-26T17:24:13.3544930Z Post job cleanup.
+deploy	Post Checkout code	2025-08-26T17:24:13.4260283Z [command]/usr/bin/git version
+deploy	Post Checkout code	2025-08-26T17:24:13.4294732Z git version 2.51.0
+deploy	Post Checkout code	2025-08-26T17:24:13.4338072Z Temporarily overriding HOME='/home/runner/work/_temp/57e1a3ca-038f-414f-940e-abb62a89c490' before making global git config changes
+deploy	Post Checkout code	2025-08-26T17:24:13.4339774Z Adding repository directory to the temporary git global config as a safe directory
+deploy	Post Checkout code	2025-08-26T17:24:13.4343107Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/synapse-externaldata/synapse-externaldata
+deploy	Post Checkout code	2025-08-26T17:24:13.4373675Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy	Post Checkout code	2025-08-26T17:24:13.4404735Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy	Post Checkout code	2025-08-26T17:24:13.4623887Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy	Post Checkout code	2025-08-26T17:24:13.4643163Z http.https://github.com/.extraheader
+deploy	Post Checkout code	2025-08-26T17:24:13.4653905Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+deploy	Post Checkout code	2025-08-26T17:24:13.4680944Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy	Post Login to Azure	﻿2025-08-26T17:24:13.4992068Z Post job cleanup.
+deploy	Post Login to Azure	2025-08-26T17:24:13.5717903Z Clearing azure cli accounts from the local cache.
+deploy	Post Login to Azure	2025-08-26T17:24:13.5727126Z [command]/usr/bin/az account clear
+deploy	Complete job	﻿2025-08-26T17:24:13.9301071Z Cleaning up orphan processes
+deploy	Complete job	2025-08-26T17:24:13.9620757Z Terminate orphan process: pid (2384) (python3)
