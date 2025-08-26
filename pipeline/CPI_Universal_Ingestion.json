@@ -1,72 +1,66 @@
 {
-  "activities": [
-    {
-      "additionalProperties": null,
-      "authentication": null,
-      "conf": null,
-      "configurationType": null,
-      "dependsOn": [],
-      "description": null,
-      "driverSize": "Medium",
-      "executorSize": "Medium",
-      "linkedServiceName": null,
-      "name": "Execute_CPI_Notebook",
-      "notebook": {
-        "referenceName": "FRED_Universal_to_ADX",
-        "type": "NotebookReference"
-      },
-      "numExecutors": null,
-      "onInactiveMarkAs": null,
-      "parameters": {
-        "release_id": {
-          "type": "Int",
-          "value": {
-            "type": "Expression",
-            "value": "@pipeline().parameters.release_id"
-          }
-        }
-      },
-      "policy": {
-        "additionalProperties": null,
-        "retry": 0,
-        "retryIntervalInSeconds": 30,
-        "secureInput": false,
-        "secureOutput": false,
-        "timeout": "1.00:00:00"
-      },
-      "sparkConfig": null,
-      "sparkPool": {
-        "referenceName": "spack2",
-        "type": "BigDataPoolReference"
-      },
-      "state": null,
-      "targetSparkConfiguration": null,
-      "type": "SynapseNotebook",
-      "userProperties": []
-    }
-  ],
-  "additionalProperties": null,
-  "annotations": [
-    "FRED",
-    "CPI",
-    "Universal"
-  ],
-  "concurrency": null,
-  "description": "Universal CPI ingestion with release_id parameter",
-  "etag": "8e00da01-0000-0100-0000-68aac8120000",
-  "folder": {
-    "name": "FRED_Pipelines"
-  },
-  "id": "/subscriptions/6f928fec-8d15-47d7-b27b-be8b568e9789/resourceGroups/MTWS_Synapse/providers/Microsoft.Synapse/workspaces/externaldata/pipelines/CPI_Universal_Ingestion",
   "name": "CPI_Universal_Ingestion",
-  "parameters": {
-    "release_id": {
-      "defaultValue": 10,
-      "type": "Int"
+  "properties": {
+    "activities": [
+      {
+        "additionalProperties": null,
+        "authentication": null,
+        "conf": null,
+        "configurationType": null,
+        "dependsOn": [],
+        "description": null,
+        "driverSize": "Medium",
+        "executorSize": "Medium",
+        "linkedServiceName": null,
+        "name": "Execute_CPI_Notebook",
+        "notebook": {
+          "referenceName": "FRED_Universal_to_ADX",
+          "type": "NotebookReference"
+        },
+        "numExecutors": null,
+        "onInactiveMarkAs": null,
+        "parameters": {
+          "release_id": {
+            "type": "Int",
+            "value": {
+              "type": "Expression",
+              "value": "@pipeline().parameters.release_id"
+            }
+          }
+        },
+        "policy": {
+          "additionalProperties": null,
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false,
+          "timeout": "1.00:00:00"
+        },
+        "sparkConfig": null,
+        "sparkPool": {
+          "referenceName": "spack2",
+          "type": "BigDataPoolReference"
+        },
+        "state": null,
+        "targetSparkConfiguration": null,
+        "type": "SynapseNotebook",
+        "userProperties": []
+      }
+    ],
+    "parameters": {
+      "release_id": {
+        "defaultValue": 10,
+        "type": "Int"
+      }
+    },
+    "annotations": [
+      "FRED",
+      "CPI",
+      "Universal"
+    ],
+    "description": "Universal CPI ingestion with release_id parameter",
+    "folder": {
+      "name": "FRED_Pipelines"
     }
-  },
-  "resourceGroup": "MTWS_Synapse",
-  "runDimensions": null,
-  "type": "Microsoft.Synapse/workspaces/pipelines",
-  "variables": null
+  }
 }
