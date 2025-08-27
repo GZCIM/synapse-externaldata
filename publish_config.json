@@ -1,4 +1,4 @@
 {
   "publishBranch": "workspace_publish",
-  "enableGitComment": false
+  "enableDebugMode": "false"
 }
