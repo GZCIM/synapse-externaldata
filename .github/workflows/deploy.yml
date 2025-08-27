@@ -18,14 +18,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: Deploy Synapse Artifacts with Validate and Deploy
+    - name: Deploy Synapse Artifacts
       uses: azure/synapse-workspace-deployment@V1.9.1
       with:
-        operation: 'validateDeploy'
+        operation: 'deploy'
+        TemplateFile: './workspace_publish/TemplateForWorkspace.json'
+        ParametersFile: './workspace_publish/TemplateParametersForWorkspace.json'
         TargetWorkspaceName: 'externaldata'
-        ArtifactsFolder: './'
         resourceGroup: 'MTWS_Synapse'
-        DeleteArtifactsNotInTemplate: false
         Environment: 'Azure Public'
         clientId: ${{ secrets.CLIENT_ID }}
         clientSecret: ${{ secrets.CLIENT_SECRET }}
