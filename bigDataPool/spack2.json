@@ -1,0 +1,18 @@
+{
+  "name": "spack2",
+  "properties": {
+    "autoPause": {
+      "enabled": true,
+      "delayInMinutes": 15
+    },
+    "autoScale": {
+      "enabled": false,
+      "minNodeCount": 0,
+      "maxNodeCount": 0
+    },
+    "nodeCount": 3,
+    "nodeSize": "Medium",
+    "nodeSizeFamily": "MemoryOptimized",
+    "sparkVersion": "3.3"
+  }
+}
