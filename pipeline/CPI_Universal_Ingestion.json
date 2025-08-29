@@ -30,12 +30,14 @@
             "type": "BigDataPoolReference"
           },
           "executorSize": "Medium",
+          "executorCores": 4,
           "conf": {
             "spark.dynamicAllocation.enabled": false,
             "spark.dynamicAllocation.minExecutors": 2,
             "spark.dynamicAllocation.maxExecutors": 4
           },
           "driverSize": "Medium",
+          "driverCores": 4,
           "numExecutors": 2
         }
       }
