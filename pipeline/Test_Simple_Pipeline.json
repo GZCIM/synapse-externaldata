@@ -1,0 +1,39 @@
+{
+  "name": "Test_Simple_Pipeline", 
+  "properties": {
+    "activities": [
+      {
+        "name": "Test_Simple_Notebook",
+        "type": "SynapseNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "notebook": {
+            "referenceName": "Test_Simple_Notebook",
+            "type": "NotebookReference"
+          },
+          "sparkPool": {
+            "referenceName": "spack2",
+            "type": "BigDataPoolReference"
+          },
+          "executorSize": "Small",
+          "conf": {
+            "spark.dynamicAllocation.enabled": false,
+            "spark.dynamicAllocation.minExecutors": 1,
+            "spark.dynamicAllocation.maxExecutors": 2
+          },
+          "driverSize": "Small",
+          "numExecutors": 1
+        }
+      }
+    ],
+    "annotations": []
+  }
+}
