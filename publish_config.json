@@ -1,4 +1,6 @@
 {
   "publishBranch": "workspace_publish",
-  "enableDebugMode": "false"
+  "includeGlobalParamsInArmTemplate": true,
+  "includeFactoryTemplate": true,
+  "enableGitComment": false
 }
