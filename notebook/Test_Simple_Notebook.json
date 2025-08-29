@@ -1,0 +1,58 @@
+{
+  "name": "Test_Simple_Notebook",
+  "properties": {
+    "cells": [
+      {
+        "cell_type": "code",
+        "source": [
+          "# Simple test to verify Spark session works",
+          "print('Starting simple test...')",
+          "",
+          "# Test 1: Basic Spark operation",
+          "df = spark.createDataFrame([(1, 'test')], ['id', 'value'])",
+          "print(f'Created DataFrame with {df.count()} rows')",
+          "",
+          "# Test 2: Show configuration",
+          "print(f'Spark version: {spark.version}')",
+          "print(f'App name: {spark.conf.get(\"spark.app.name\")}')",
+          "",
+          "print('✅ Simple test completed successfully!')"
+        ],
+        "outputs": [],
+        "execution_count": null,
+        "metadata": {
+          "diagram": {
+            "activateDiagramType": 1,
+            "chartConfig": {
+              "category": "bar",
+              "keys": ["value"],
+              "values": ["id"],
+              "yLabel": "id",
+              "xLabel": "value",
+              "aggregation": "SUM",
+              "aggByBackend": false
+            },
+            "aggData": {},
+            "isSummary": false,
+            "previewData": {
+              "filter": null
+            },
+            "isSql": false
+          }
+        },
+        "attachments": {}
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "name": "synapse_pyspark",
+        "display_name": "Synapse PySpark"
+      },
+      "language_info": {
+        "name": "python"
+      }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+  }
+}
