@@ -1,50 +1,70 @@
 {
-  "name": "CPI_Universal_Ingestion",
-  "properties": {
-    "activities": [
-      {
-        "name": "Execute_CPI_Notebook",
-        "type": "SynapseNotebook",
-        "dependsOn": [],
-        "policy": {
-          "timeout": "1.00:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureOutput": false,
-          "secureInput": false
-        },
-        "userProperties": [],
-        "typeProperties": {
-          "notebook": {
-            "referenceName": "FRED_Universal_to_ADX",
-            "type": "NotebookReference"
-          },
-          "parameters": {
-            "release_id": {
-              "value": "@pipeline().parameters.release_id",
-              "type": "Int"
-            }
-          },
-          "sparkPool": {
-            "referenceName": "spack2",
-            "type": "BigDataPoolReference"
+  "activities": [
+    {
+      "additionalProperties": null,
+      "authentication": null,
+      "conf": {
+        "spark.dynamicAllocation.enabled": false,
+        "spark.dynamicAllocation.maxExecutors": 4,
+        "spark.dynamicAllocation.minExecutors": 2
+      },
+      "configurationType": null,
+      "dependsOn": [],
+      "description": null,
+      "driverSize": "Medium",
+      "executorSize": "Medium",
+      "linkedServiceName": null,
+      "name": "FRED_CPI_Full_Collection",
+      "notebook": {
+        "referenceName": "FRED_CPI_Full_Collection",
+        "type": "NotebookReference"
+      },
+      "numExecutors": 2,
+      "onInactiveMarkAs": null,
+      "parameters": {
+        "release_id": {
+          "type": "string",
+          "value": {
+            "type": "Expression",
+            "value": "@pipeline().parameters.release_id"
           }
         }
-      }
-    ],
-    "parameters": {
-      "release_id": {
-        "type": "Int",
-        "defaultValue": 10
-      }
-    },
-    "annotations": [
-      "FRED",
-      "CPI",
-      "Universal"
-    ],
-    "folder": {
-      "name": "FRED_Pipelines"
+      },
+      "policy": {
+        "additionalProperties": null,
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureInput": false,
+        "secureOutput": false,
+        "timeout": "0.12:00:00"
+      },
+      "sparkConfig": null,
+      "sparkPool": {
+        "referenceName": "spack2",
+        "type": "BigDataPoolReference"
+      },
+      "state": null,
+      "targetSparkConfiguration": null,
+      "type": "SynapseNotebook",
+      "userProperties": []
     }
-  }
+  ],
+  "additionalProperties": null,
+  "annotations": [],
+  "concurrency": null,
+  "description": null,
+  "etag": "c9001db7-0000-0100-0000-68b140320000",
+  "folder": null,
+  "id": "/subscriptions/6f928fec-8d15-47d7-b27b-be8b568e9789/resourceGroups/MTWS_Synapse/providers/Microsoft.Synapse/workspaces/externaldata/pipelines/CPI_Universal_Ingestion",
+  "name": "CPI_Universal_Ingestion",
+  "parameters": {
+    "release_id": {
+      "defaultValue": "10",
+      "type": "string"
+    }
+  },
+  "resourceGroup": "MTWS_Synapse",
+  "runDimensions": null,
+  "type": "Microsoft.Synapse/workspaces/pipelines",
+  "variables": null
 }

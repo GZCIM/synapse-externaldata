@@ -1,18 +1,22 @@
 {
+  "etag": "c2005805-0000-0100-0000-68b04e020000",
+  "id": "/subscriptions/6f928fec-8d15-47d7-b27b-be8b568e9789/resourceGroups/MTWS_Synapse/providers/Microsoft.Synapse/workspaces/externaldata/linkedservices/ADXLinkedService",
   "name": "ADXLinkedService",
   "properties": {
-    "type": "AzureDataExplorer",
-    "typeProperties": {
-      "endpoint": "https://dataexploreradx.eastus.kusto.windows.net",
-      "database": "macro-data",
-      "servicePrincipalId": "",
-      "servicePrincipalKey": {
-        "type": "SecureString",
-        "value": ""
-      },
-      "tenant": "8274c97d-de9d-4328-98cf-2d4ee94bf104"
-    },
+    "additionalProperties": null,
     "annotations": [],
-    "description": "Azure Data Explorer connection for FRED data ingestion"
-  }
+    "connectVia": null,
+    "credential": null,
+    "database": "macro-data",
+    "description": "Azure Data Explorer connection using Managed Identity authentication",
+    "endpoint": "https://gzc-adx-test.eastus.kusto.windows.net",
+    "parameters": null,
+    "servicePrincipalId": null,
+    "servicePrincipalKey": null,
+    "tenant": "8274c97d-de9d-4328-98cf-2d4ee94bf104",
+    "type": "AzureDataExplorer",
+    "version": null
+  },
+  "resourceGroup": "MTWS_Synapse",
+  "type": "Microsoft.Synapse/workspaces/linkedservices"
 }
