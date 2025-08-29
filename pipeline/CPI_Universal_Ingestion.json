@@ -3,8 +3,8 @@
   "properties": {
     "activities": [
       {
-        "name": "FRED_Azure_Function_Call",
-        "type": "WebActivity",
+        "name": "FRED_CPI_Full_Collection",
+        "type": "SynapseNotebook",
         "dependsOn": [],
         "policy": {
           "timeout": "0.12:00:00",
@@ -15,18 +15,28 @@
         },
         "userProperties": [],
         "typeProperties": {
-          "url": "https://fred-function-app.azurewebsites.net/api/fred_ingestion",
-          "method": "POST",
-          "headers": {
-            "Content-Type": "application/json"
+          "notebook": {
+            "referenceName": "FRED_CPI_Full_Collection",
+            "type": "NotebookReference"
           },
-          "body": {
-            "release_id": "@pipeline().parameters.release_id"
+          "parameters": {
+            "release_id": {
+              "value": "@pipeline().parameters.release_id",
+              "type": "string"
+            }
           },
-          "authentication": {
-            "type": "MSI",
-            "resource": "https://fred-function-app.azurewebsites.net"
-          }
+          "sparkPool": {
+            "referenceName": "spack2",
+            "type": "BigDataPoolReference"
+          },
+          "executorSize": "Medium",
+          "conf": {
+            "spark.dynamicAllocation.enabled": false,
+            "spark.dynamicAllocation.minExecutors": 2,
+            "spark.dynamicAllocation.maxExecutors": 4
+          },
+          "driverSize": "Medium",
+          "numExecutors": 2
         }
       }
     ],
