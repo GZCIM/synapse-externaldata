@@ -18,20 +18,17 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: Deploy using Azure CLI
-      run: |
-        # Update pipeline
-        az synapse pipeline create --workspace-name externaldata \
-          --name CPI_Universal_Ingestion \
-          --file @pipeline/CPI_Universal_Ingestion.json
-        
-        # Update notebook
-        az synapse notebook create --workspace-name externaldata \
-          --name FRED_CPI_Full_Collection \
-          --file @notebook/FRED_CPI_Full_Collection.json \
-          --spark-pool-name spack2
-        
-        # Update linked service
-        az synapse linked-service create --workspace-name externaldata \
-          --name ADXLinkedService \
-          --file @linkedService/ADXLinkedService.json
+    - name: Deploy Synapse Artifacts
+      uses: azure/synapse-workspace-deployment@V1.9.1
+      with:
+        operation: 'deploy'
+        TargetWorkspaceName: 'externaldata'
+        TemplateFile: './TemplateForWorkspace.json'
+        ParametersFile: './TemplateParametersForWorkspace.json'
+        resourceGroup: 'MTWS_Synapse'
+        clientId: ${{ secrets.CLIENT_ID }}
+        clientSecret: ${{ secrets.CLIENT_SECRET }}
+        tenantId: ${{ secrets.TENANT_ID }}
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+        Environment: 'Azure Public'
+        OverrideArmParameters: false
