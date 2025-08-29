@@ -1,0 +1,34 @@
+{
+  "name": "Test_No_Dbutils_Pipeline", 
+  "properties": {
+    "activities": [
+      {
+        "name": "Test_No_Dbutils_Notebook",
+        "type": "SynapseNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "notebook": {
+            "referenceName": "Test_No_Dbutils_Notebook",
+            "type": "NotebookReference"
+          },
+          "sparkPool": {
+            "referenceName": "spack2",
+            "type": "BigDataPoolReference"
+          },
+          "executorSize": "Small",
+          "driverSize": "Small",
+          "numExecutors": 1
+        }
+      }
+    ],
+    "annotations": []
+  }
+}

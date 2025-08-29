@@ -1,0 +1,50 @@
+{
+  "name": "Test_No_Dbutils_Notebook",
+  "properties": {
+    "cells": [
+      {
+        "cell_type": "code",
+        "source": [
+          "print('✅ Starting notebook without dbutils...')",
+          "",
+          "# Avoid dbutils completely - use hardcoded values",
+          "release_id = 379  # Hardcoded instead of dbutils.widgets.get()",
+          "print(f'Using hardcoded release_id: {release_id}')",
+          "",
+          "# Check basic Spark access",
+          "try:",
+          "    print(f'Spark version: {spark.version}')",
+          "    print(f'Spark app name: {spark.conf.get(\"spark.app.name\")}')",
+          "    print('✅ Spark session accessible')",
+          "except Exception as e:",
+          "    print(f'❌ Spark session error: {e}')",
+          "",
+          "# Check DataFrame creation",
+          "try:",
+          "    df = spark.createDataFrame([(1, 'value1', release_id)], ['id', 'name', 'release_id'])",
+          "    count = df.count()",
+          "    print(f'✅ Created DataFrame with {count} rows')",
+          "except Exception as e:",
+          "    print(f'❌ DataFrame creation error: {e}')",
+          "",
+          "print('✅ Completed without dbutils!')"
+        ],
+        "outputs": [],
+        "execution_count": null,
+        "metadata": {},
+        "attachments": {}
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "name": "synapse_pyspark",
+        "display_name": "Synapse PySpark"
+      },
+      "language_info": {
+        "name": "python"
+      }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+  }
+}
