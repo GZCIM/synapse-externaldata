@@ -11,7 +11,7 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
     
     - name: Login to Azure
       uses: azure/login@v1
@@ -21,13 +21,11 @@ jobs:
     - name: Deploy Synapse Artifacts
       uses: azure/synapse-workspace-deployment@V1.9.1
       with:
-        operation: 'deploy'
-        TemplateFile: './workspace_publish/TemplateForWorkspace.json'
-        ParametersFile: './workspace_publish/TemplateParametersForWorkspace.json'
+        operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
+        ArtifactsFolder: './'
         resourceGroup: 'MTWS_Synapse'
-        Environment: 'Azure Public'
         clientId: ${{ secrets.CLIENT_ID }}
         clientSecret: ${{ secrets.CLIENT_SECRET }}
-        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
         tenantId: ${{ secrets.TENANT_ID }}
+        subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
