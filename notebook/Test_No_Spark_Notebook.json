@@ -1,0 +1,45 @@
+{
+  "name": "Test_No_Spark_Notebook",
+  "properties": {
+    "cells": [
+      {
+        "cell_type": "code",
+        "source": [
+          "print('✅ Starting super minimal test...')",
+          "print('This notebook avoids all Spark operations')",
+          "",
+          "# Basic Python without Spark",
+          "import sys",
+          "import datetime",
+          "print(f'Python version: {sys.version}')",
+          "print(f'Current time: {datetime.datetime.now()}')",
+          "",
+          "# Test parameter access without Spark",
+          "try:",
+          "    print('Attempting to access dbutils...')",
+          "    # This might be the issue - dbutils requires Spark session",
+          "    print('dbutils access would happen here')",
+          "    print('✅ Super minimal test completed - no Spark operations!')",
+          "except Exception as e:",
+          "    print(f'Expected error accessing dbutils: {e}')",
+          "    print('✅ Super minimal test completed!')"
+        ],
+        "outputs": [],
+        "execution_count": null,
+        "metadata": {},
+        "attachments": {}
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "name": "synapse_pyspark",
+        "display_name": "Synapse PySpark"
+      },
+      "language_info": {
+        "name": "python"
+      }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+  }
+}
