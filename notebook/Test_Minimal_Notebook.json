@@ -1,0 +1,50 @@
+{
+  "name": "Test_Minimal_Notebook",
+  "properties": {
+    "cells": [
+      {
+        "cell_type": "code",
+        "source": [
+          "# Minimal test - just print and exit",
+          "print('✅ Minimal notebook executed successfully!')",
+          "print(f'Spark version: {spark.version}')",
+          "print('Test completed')"
+        ],
+        "outputs": [],
+        "execution_count": null,
+        "metadata": {
+          "diagram": {
+            "activateDiagramType": 1,
+            "chartConfig": {
+              "category": "bar",
+              "keys": ["value"],
+              "values": ["id"],
+              "yLabel": "id",
+              "xLabel": "value",
+              "aggregation": "SUM",
+              "aggByBackend": false
+            },
+            "aggData": {},
+            "isSummary": false,
+            "previewData": {
+              "filter": null
+            },
+            "isSql": false
+          }
+        },
+        "attachments": {}
+      }
+    ],
+    "metadata": {
+      "kernelspec": {
+        "name": "synapse_pyspark",
+        "display_name": "Synapse PySpark"
+      },
+      "language_info": {
+        "name": "python"
+      }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+  }
+}
