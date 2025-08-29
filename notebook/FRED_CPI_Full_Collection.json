@@ -8,7 +8,33 @@
       {
         "additionalProperties": null,
         "attachments": null,
-        "cellType": "unknown",
+        "cellType": "code",
+        "metadata": {
+          "collapsed": false
+        },
+        "outputs": [],
+        "source": [
+          "%%configure",
+          "{",
+          "    \"driverMemory\": \"4g\",",
+          "    \"driverCores\": 2,",
+          "    \"executorMemory\": \"4g\",",
+          "    \"executorCores\": 2,",
+          "    \"numExecutors\": 2,",
+          "    \"conf\": {",
+          "        \"spark.dynamicAllocation.enabled\": \"false\",",
+          "        \"spark.sql.adaptive.enabled\": \"true\",",
+          "        \"spark.sql.adaptive.coalescePartitions.enabled\": \"true\",",
+          "        \"spark.serializer\": \"org.apache.spark.serializer.KryoSerializer\",",
+          "        \"spark.sql.execution.arrow.pyspark.enabled\": \"true\"",
+          "    }",
+          "}"
+        ]
+      },
+      {
+        "additionalProperties": null,
+        "attachments": null,
+        "cellType": "code",
         "metadata": {
           "collapsed": false
         },
