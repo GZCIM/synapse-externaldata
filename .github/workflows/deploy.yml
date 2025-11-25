@@ -21,7 +21,7 @@ jobs:
     - name: Deploy Synapse Artifacts
       uses: azure/synapse-workspace-deployment@V1.9.1
       with:
-        operation: 'deploy'
+        operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
         TemplateFile: './TemplateForWorkspace.json'
         ParametersFile: './TemplateParametersForWorkspace.json'
