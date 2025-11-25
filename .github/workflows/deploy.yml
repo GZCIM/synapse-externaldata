@@ -21,12 +21,14 @@ jobs:
     - name: Deploy Synapse Artifacts
       uses: azure/synapse-workspace-deployment@V1.9.1
       with:
-        operation: 'validateDeploy'
+        operation: 'deploy'
         TargetWorkspaceName: 'externaldata'
-        ArtifactsFolder: './'
+        TemplateFile: './TemplateForWorkspace.json'
+        ParametersFile: './TemplateParametersForWorkspace.json'
         resourceGroup: 'MTWS_Synapse'
         clientId: ${{ secrets.CLIENT_ID }}
         clientSecret: ${{ secrets.CLIENT_SECRET }}
         tenantId: ${{ secrets.TENANT_ID }}
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
         Environment: 'Azure Public'
+        OverrideArmParameters: false
