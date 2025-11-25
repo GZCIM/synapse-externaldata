@@ -8,27 +8,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
+
     - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
+
     - name: Deploy Synapse Artifacts
       uses: azure/synapse-workspace-deployment@V1.9.1
       with:
         operation: 'validateDeploy'
         TargetWorkspaceName: 'externaldata'
-        TemplateFile: './TemplateForWorkspace.json'
-        ParametersFile: './TemplateParametersForWorkspace.json'
+        ArtifactsFolder: './'
         resourceGroup: 'MTWS_Synapse'
         clientId: ${{ secrets.CLIENT_ID }}
         clientSecret: ${{ secrets.CLIENT_SECRET }}
         tenantId: ${{ secrets.TENANT_ID }}
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
         Environment: 'Azure Public'
-        OverrideArmParameters: false
