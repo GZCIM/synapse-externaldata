@@ -1,0 +1,241 @@
+{
+    "nbformat": 4,
+    "nbformat_minor": 2,
+    "metadata": {
+        "kernelspec": {
+            "name": "synapse_pyspark",
+            "display_name": "Synapse PySpark"
+        },
+        "language_info": {
+            "name": "python"
+        },
+        "save_output": true,
+        "synapse_widget": {
+            "version": "0.1"
+        }
+    },
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Blob to Delta INCREMENTAL\n",
+                "Fast incremental updates for FRED data - processes only specified releases\n",
+                "\n",
+                "**Target:** <5 minutes for single release update\n",
+                "\n",
+                "**Parameters:**\n",
+                "- `release_ids`: Comma-separated release IDs (e.g., \"10,17,320\")\n",
+                "- `mode`: \"merge\" (upsert) or \"append\""
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {
+                "jupyter": {
+                    "source_hidden": false,
+                    "outputs_hidden": false
+                },
+                "nteract": {
+                    "transient": {
+                        "deleting": false
+                    }
+                },
+                "tags": [
+                    "parameters"
+                ]
+            },
+            "source": [
+                "# Parameters - Synapse notebook parameters (set by pipeline)\n",
+                "storage_account = \"gzcstorageaccount\"\n",
+                "container = \"fred-data\"\n",
+                "release_ids = \"10\"\n",
+                "mode = \"merge\""
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "from pyspark.sql.functions import (\n",
+                "    col, lit, year, count, countDistinct, current_timestamp,\n",
+                "    when, to_date, input_file_name\n",
+                ")\n",
+                "from delta.tables import DeltaTable\n",
+                "import time\n",
+                "from datetime import datetime\n",
+                "\n",
+                "# Get parameters from notebook parameters cell (Synapse style - variables are directly available)\n",
+                "STORAGE_ACCOUNT = storage_account\n",
+                "CONTAINER = container\n",
+                "RELEASE_IDS = release_ids\n",
+                "MODE = mode\n",
+                "\n",
+                "# Paths\n",
+                "BASE_PATH = f\"abfss://{CONTAINER}@{STORAGE_ACCOUNT}.dfs.core.windows.net/US_Fred_Data\"\n",
+                "RAW_PATH = f\"{BASE_PATH}/raw\"\n",
+                "DELTA_PATH = f\"{BASE_PATH}/series_observations_v3\"\n",
+                "\n",
+                "# Parse release IDs\n",
+                "release_id_list = [int(r.strip()) for r in RELEASE_IDS.split(\",\") if r.strip().isdigit()]\n",
+                "\n",
+                "print(\"=\"*80)\n",
+                "print(\"BLOB TO DELTA INCREMENTAL\")\n",
+                "print(\"=\"*80)\n",
+                "print(f\"Release IDs: {release_id_list}\")\n",
+                "print(f\"Mode: {MODE}\")\n",
+                "print(f\"Started: {datetime.utcnow().isoformat()}\")\n",
+                "\n",
+                "start_time = time.time()\n",
+                "stats = {\"releases_processed\": 0, \"rows_read\": 0, \"rows_written\": 0}"
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "# Step 1: Read and filter parquet files for target releases\n",
+                "print(\"\\nStep 1: Reading parquet files for target releases...\")\n",
+                "\n",
+                "all_files_df = spark.read.parquet(f\"{RAW_PATH}/*/*.parquet\")\n",
+                "filtered_df = all_files_df.filter(col(\"release_id\").isin(release_id_list))\n",
+                "\n",
+                "stats[\"rows_read\"] = filtered_df.count()\n",
+                "print(f\"Found {stats['rows_read']:,} rows for releases: {release_id_list}\")\n",
+                "\n",
+                "# Show breakdown\n",
+                "filtered_df.groupBy(\"release_id\").count().show()"
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "# Step 2: Transform - use release_date as vintage_date\n",
+                "print(\"\\nStep 2: Transforming data...\")\n",
+                "\n",
+                "transformed_df = filtered_df \\\n",
+                "    .withColumn(\"vintage_date\",\n",
+                "        when(col(\"release_date\").isNotNull(), col(\"release_date\"))\n",
+                "        .otherwise(col(\"vintage_date\"))) \\\n",
+                "    .withColumn(\"year\", year(to_date(col(\"date\")))) \\\n",
+                "    .withColumn(\"processed_at\", current_timestamp())\n",
+                "\n",
+                "# Ensure date type\n",
+                "transformed_df = transformed_df.withColumn(\"vintage_date\", to_date(col(\"vintage_date\")))\n",
+                "\n",
+                "# Sample vintage dates\n",
+                "print(\"Sample vintage_dates by release:\")\n",
+                "transformed_df.select(\"release_id\", \"vintage_date\").distinct().orderBy(\"release_id\").show(10)"
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "# Step 3: Deduplicate\n",
+                "print(\"\\nStep 3: Deduplicating...\")\n",
+                "\n",
+                "deduped_df = transformed_df.dropDuplicates([\"series_id\", \"date\", \"release_id\", \"vintage_date\"])\n",
+                "final_count = deduped_df.count()\n",
+                "print(f\"After dedup: {final_count:,} rows\")"
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "# Step 4: Write to Delta Lake\n",
+                "print(f\"\\nStep 4: Writing to Delta Lake ({MODE} mode)...\")\n",
+                "\n",
+                "write_start = time.time()\n",
+                "\n",
+                "try:\n",
+                "    delta_table = DeltaTable.forPath(spark, DELTA_PATH)\n",
+                "    table_exists = True\n",
+                "    print(f\"Delta table exists\")\n",
+                "except:\n",
+                "    table_exists = False\n",
+                "    print(f\"Delta table does not exist - will create\")\n",
+                "\n",
+                "if not table_exists:\n",
+                "    # Create new table\n",
+                "    deduped_df.write \\\n",
+                "        .format(\"delta\") \\\n",
+                "        .mode(\"overwrite\") \\\n",
+                "        .partitionBy(\"release_id\", \"year\") \\\n",
+                "        .save(DELTA_PATH)\n",
+                "    stats[\"rows_written\"] = final_count\n",
+                "    \n",
+                "elif MODE == \"merge\":\n",
+                "    # MERGE: Upsert\n",
+                "    delta_table.alias(\"target\").merge(\n",
+                "        deduped_df.alias(\"source\"),\n",
+                "        \"target.series_id = source.series_id AND target.date = source.date AND target.release_id = source.release_id\"\n",
+                "    ).whenMatchedUpdate(\n",
+                "        condition=\"source.vintage_date > target.vintage_date OR target.vintage_date IS NULL\",\n",
+                "        set={\n",
+                "            \"value\": \"source.value\",\n",
+                "            \"vintage_date\": \"source.vintage_date\",\n",
+                "            \"processed_at\": \"source.processed_at\"\n",
+                "        }\n",
+                "    ).whenNotMatchedInsertAll().execute()\n",
+                "    stats[\"rows_written\"] = final_count\n",
+                "    \n",
+                "else:  # append\n",
+                "    deduped_df.write \\\n",
+                "        .format(\"delta\") \\\n",
+                "        .mode(\"append\") \\\n",
+                "        .partitionBy(\"release_id\", \"year\") \\\n",
+                "        .save(DELTA_PATH)\n",
+                "    stats[\"rows_written\"] = final_count\n",
+                "\n",
+                "write_duration = time.time() - write_start\n",
+                "print(f\"Write completed in {write_duration:.2f}s\")\n",
+                "print(f\"Rows written: {stats['rows_written']:,}\")"
+            ],
+            "outputs": [],
+            "execution_count": null
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "source": [
+                "# Step 5: Summary\n",
+                "total_duration = time.time() - start_time\n",
+                "\n",
+                "print(\"\\n\" + \"=\"*80)\n",
+                "print(\"INCREMENTAL UPDATE COMPLETE\")\n",
+                "print(\"=\"*80)\n",
+                "print(f\"Releases processed: {len(release_id_list)}\")\n",
+                "print(f\"Rows read: {stats['rows_read']:,}\")\n",
+                "print(f\"Rows written: {stats['rows_written']:,}\")\n",
+                "print(f\"Duration: {total_duration:.2f}s\")\n",
+                "print(f\"Finished: {datetime.utcnow().isoformat()}\")\n",
+                "print(\"=\"*80)\n",
+                "\n",
+                "# Exit with status (Synapse uses mssparkutils)\n",
+                "import json\n",
+                "exit_value = json.dumps({\n",
+                "    \"status\": \"success\",\n",
+                "    \"releases_processed\": len(release_id_list),\n",
+                "    \"rows_written\": stats[\"rows_written\"],\n",
+                "    \"duration_seconds\": round(total_duration, 2)\n",
+                "})\n",
+                "mssparkutils.notebook.exit(exit_value)"
+            ],
+            "outputs": [],
+            "execution_count": null
+        }
+    ]
+}
